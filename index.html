@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Models &amp; Research | Rishi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:           #0f1117;
+      --surface:      #161b27;
+      --border:       #1f2a3a;
+      --text-primary: #e8edf5;
+      --text-muted:   #7a8899;
+      --accent:       #4f9cf9;
+      --tag-bg:       #1a2235;
+      --tag-text:     #8ab4e8;
+      --btn-border:   #2a3a52;
+      --btn-hover-bg: #1e2d44;
+      --divider:      #1c2636;
+      --heading-dim:  #3d5270;
+    }
+    [data-theme="light"] {
+      --bg:           #f7f9fc;
+      --surface:      #ffffff;
+      --border:       #dde4ee;
+      --text-primary: #1a2235;
+      --text-muted:   #6b7a90;
+      --accent:       #1a6fd4;
+      --tag-bg:       #e8f0fb;
+      --tag-text:     #2563a8;
+      --btn-border:   #c5d5eb;
+      --btn-hover-bg: #ddeaf8;
+      --divider:      #e2e8f0;
+      --heading-dim:  #bfcfe5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+    }
+    .site-title {
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .site-subtitle {
+      margin-top: 10px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.65;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--btn-border);
+      border-radius: 8px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-muted);
+      transition: border-color 0.2s, background 0.2s;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .theme-toggle:hover {
+      background: var(--btn-hover-bg);
+      border-color: var(--accent);
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 56px;
+    }
+    .section-heading {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--heading-dim);
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--divider);
+      margin-bottom: 28px;
+    }
+
+    /* ── Project Card ── */
+    .project {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--divider);
+    }
+    .project:last-child {
+      border-bottom: none;
+    }
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 3px 9px;
+    }
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .project-links {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--btn-border);
+      color: var(--text-muted);
+      background: none;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn:hover {
+      background: var(--btn-hover-bg);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-primary {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-primary:hover {
+      background: rgba(79,156,249,0.1);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--heading-dim);
+      padding-top: 48px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div>
+      <h1 class="site-title">Financial Models &amp; Research</h1>
+      <p class="site-subtitle">A curated collection of equity research, macroeconomic forecasting, and leveraged buyout models prepared for analytical and educational purposes.</p>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- EQUITY RESEARCH                             -->
+  <!-- ─────────────────────────────────────────── -->
+  <section class="section">
+    <h2 class="section-heading">Equity Research</h2>
+    <hr class="section-divider" />
+
+    <!-- Adani Green -->
+    <div class="project">
+      <div class="project-title">Adani Green Energy Ltd — Equity Research</div>
+      <div class="tags">
+        <span class="tag">Equity Research</span>
+        <span class="tag">DCF Valuation</span>
+        <span class="tag">Renewable Energy</span>
+      </div>
+      <p class="project-desc">
+        Detailed equity research report analysing Adani Green Energy Ltd's business model,
+        capacity expansion, ESG positioning, financial performance, DuPont analysis,
+        and valuation using DCF and relative frameworks.
+      </p>
+      <div class="project-links">
+        <a class="btn btn-primary" href="Adani_Green.pptx">View</a>
+        <a class="btn" href="Adani_Green.pptx" download>⬇ Download</a>
+      </div>
+    </div>
+
+    <!-- C2C Investment Memo -->
+    <div class="project">
+      <div class="project-title">Investment Memo — C2C Advanced Systems</div>
+      <div class="tags">
+        <span class="tag">Equity Research</span>
+        <span class="tag">EIC Framework Analysis</span>
+      </div>
+      <p class="project-desc">
+        A concise investment thesis highlighting C2C Advanced Systems as a defense SME
+        with a software-first, IP-led model, delivering strong margins and rapid earnings
+        growth for long-term value creation despite working-capital risks.
+      </p>
+      <div class="project-links">
+        <a class="btn btn-primary" href="Investment_Memo.pdf">View</a>
+        <a class="btn" href="Investment_Memo.pdf" download>⬇ Download</a>
+      </div>
+    </div>
+
+    <!-- Amber Investment Memo -->
+    <div class="project">
+      <div class="project-title">Investment Memo — Amber Enterprises India Ltd</div>
+      <div class="tags">
+        <span class="tag">Equity Research</span>
+        <span class="tag">EIC Framework Analysis</span>
+        <span class="tag">Contract Manufacturing</span>
+      </div>
+      <p class="project-desc">
+        Investment thesis on Amber Enterprises, India's largest room AC contract manufacturer and ODM,
+        expanding rapidly into electronics manufacturing services and railway subsystems. The value case
+        centres on a ROCE re-rating to 19.5%, NWC compression from 35–40 days to just 9 days, and a
+        structural tailwind from India's sub-6% AC penetration rate in a 1.4 billion-person market.
+      </p>
+      <div class="project-links">
+        <a class="btn btn-primary" href="Amber_Investment_Memo.docx.pdf">View</a>
+        <a class="btn" href="Amber_Investment_Memo.docx.pdf" download>⬇ Download</a>
+      </div>
+    </div>
+
+    <!-- Aye Finance Investment Memo -->
+    <div class="project">
+      <div class="project-title">Investment Memo — Aye Finance Limited</div>
+      <div class="tags">
+        <span class="tag">Equity Research</span>
+        <span class="tag">EIC Framework Analysis</span>
+        <span class="tag">NBFC / Microfinance</span>
+      </div>
+      <p class="project-desc">
+        Investment thesis on Aye Finance, an NBFC micro-enterprise lender at ₹2,900 Cr market cap
+        trading at 16.9x P/E versus a sector median of 27.97x P/E. The thesis centres on proprietary
+        cluster-based underwriting expertise, a structurally vast addressable market of 63M+ ignored
+        micro-enterprises, and multiple expansion as credit quality normalises post a sector-wide FY25
+        stress cycle.
+      </p>
+      <div class="project-links">
+        <a class="btn btn-primary" href="Aye_Finance_Investment_Memo.docx.pdf">View</a>
+        <a class="btn" href="Aye_Finance_Investment_Memo.docx.pdf" download>⬇ Download</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- MACROECONOMIC & TIME-SERIES FORECASTING     -->
+  <!-- ─────────────────────────────────────────── -->
+  <section class="section">
+    <h2 class="section-heading">Macroeconomic &amp; Time-Series Forecasting</h2>
+    <hr class="section-divider" />
+
+    <!-- USD-INR -->
+    <div class="project">
+      <div class="project-title">USD–INR Exchange Rate Forecasting Model</div>
+      <div class="tags">
+        <span class="tag">Time Series</span>
+        <span class="tag">Econometrics</span>
+        <span class="tag">Macroeconomic Modeling</span>
+      </div>
+      <p class="project-desc">
+        Exchange rate forecasting using Prophet, SARIMA, and a macro-factor linear
+        regression framework incorporating interest rate differentials, crude oil prices,
+        forex reserves, OECD CLI, and geopolitical risk indicators.
+      </p>
+      <div class="project-links">
+        <a class="btn btn-primary" href="USD-INR_Forecasting_Model.docx">View</a>
+        <a class="btn" href="USD-INR_Forecasting_Model.docx" download>⬇ Download</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- LEVERAGED BUYOUT MODELS                     -->
+  <!-- ─────────────────────────────────────────── -->
+  <section class="section">
+    <h2 class="section-heading">Leveraged Buyout Models</h2>
+    <hr class="section-divider" />
+
+    <!-- AVAV -->
+    <div class="project">
+      <div class="project-title">AeroVironment (AVAV) — LBO Model</div>
+      <div class="tags">
+        <span class="tag">LBO</span>
+        <span class="tag">Accretion–Dilution</span>
+        <span class="tag">Deal Structuring</span>
+      </div>
+      <p class="project-desc">
+        Leveraged buyout model evaluating transaction structure, debt schedules,
+        free cash flows, exit assumptions, accretion-dilution analysis and IRR sensitivities
+        for AeroVironment (AVAV).
+      </p>
+      <div class="project-links">
+        <a class="btn btn-primary" href="AVAV.xlsx">View</a>
+        <a class="btn" href="AVAV.xlsx" download>⬇ Download</a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>built by rishi &nbsp;·&nbsp; financial models &amp; research</footer>
+
+</div>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const html   = document.documentElement;
+
+  // Restore saved preference
+  const saved = localStorage.getItem('theme');
+  if (saved) { html.setAttribute('data-theme', saved); toggle.textContent = saved === 'light' ? '☀️' : '🌙'; }
+
+  toggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next    = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    toggle.textContent = next === 'light' ? '☀️' : '🌙';
+    localStorage.setItem('theme', next);
+  });
+</script>
+
+</body>
+</html>
